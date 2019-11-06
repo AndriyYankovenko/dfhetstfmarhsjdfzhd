@@ -1,0 +1,47 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+class Vector:
+    
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        
+    def scale(self, alpha):
+        self.x *= alpha
+        self.y *= alpha
+    
+    def norm(self):
+        return round((self.x**2 + self.y**2) ** 0.5, 1)
+    
+def parse(coordinates):
+    x, y = map(float, coordinates.split())
+    return Vector(x, y)
+
+def add(vector1, vector2):
+    return Vector(vector1.x + vector2.x, vector1.y + vector2.y)
+
+if __name__ == '__main__':
+    coordinates_1 = input()
+    
+    vec1 = parse(coordinates_1)
+
+    coordinates_2 = input()
+    
+    vec2 = parse(coordinates_2)
+
+    alpha_1 = float(input().strip())
+
+    alpha_2 = float(input().strip())
+    
+    print(vec1.norm(), vec2.norm())
+    vec1.scale(alpha_1)
+    vec2.scale(alpha_2)
+    print(vec1.norm(), vec2.norm())
+    vec3 = add(vec1, vec2)
+    print(vec3.norm())
